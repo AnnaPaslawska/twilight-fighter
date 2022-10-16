@@ -1,0 +1,49 @@
+.user-form {
+	display: grid;
+	grid-area: ;
+}
+
+.user-data,
+.ship-header,
+.ship-container {
+	display: grid;
+	align-items: center;
+	justify-content: flex-start;
+	justify-items: start;
+	gap: 10px;
+}
+
+.user-data {
+	grid-template-columns: 150px repeat(3, 50px);
+}
+
+.user-data input,
+.user-data select {
+	grid-column: span 3;
+}
+
+.user-data select {
+	width: 100%;
+	padding: 1px 0;
+}
+
+.ship-container,
+.ship-header {
+	grid-template-columns: 150px repeat(3, 50px);
+}
+
+.ship-header {
+	border-bottom: 1px solid #ccc;
+}
+
+.ship-container:not(:last-of-type) {
+	margin-bottom: 10px;
+}
+
+.ship-container label {
+	width: 100%;
+}
+
+.ship-container input {
+	width: 100%;
+}

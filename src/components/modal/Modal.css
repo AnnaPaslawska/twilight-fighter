@@ -1,0 +1,80 @@
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1000;
+  font-size: 12px;
+  background: #fff;
+  color: #000;
+  width: 80%;
+  transform: translateX(-50%) translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  box-shadow: #000 0 2px 5px;
+  transition: all 100ms;
+  opacity: 0;
+}
+.modal.enter {
+  opacity: 0;
+  width: 0;
+}
+.modal.enter-active {
+  opacity: 0.5;
+  width: 90%;
+}
+.modal.enter-done {
+  opacity: 1;
+  width: 80%;
+}
+.modal.exit {
+  opacity: 1;
+  width: 80%;
+}
+.modal.exit-active {
+  opacity: 0.5;
+  width: 80%;
+}
+.modal.exit-done {
+  opacity: 0;
+  width: 80%;
+}
+
+.modal > .header {
+  border-bottom: 1px solid #ccc;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+  color: #fff;
+  background-color: #282c34;
+}
+
+.modal > .content {
+  width: 100%;
+  padding: 20px;
+  flex-grow: 1;
+}
+
+.modal > .actions {
+  border-top: 1px solid #ccc;
+  padding: 10px 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.modal > .close {
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  right: 3px;
+  top: 3px;
+  font-size: 24px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #cfcece;
+  padding: 0;
+}
