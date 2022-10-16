@@ -1,9 +1,9 @@
 import React from 'react';
-import { Modal } from '../components/modal/Modal';
-import { UserShipType } from '../domain/interfaces';
-import { useAppDispatch, useAppSelector } from '../domain/hooks';
-import { setName, setColor, setStat, clearState, UserState, selectCurrentUser } from '../domain/createUserSlice';
-import { USER_COLORS } from '../domain/constants';
+import { ModalComponent } from 'components/ModalComponent';
+import { UserShipType } from 'domain/interfaces';
+import { useAppDispatch, useAppSelector } from 'domain/hooks';
+import { setName, setColor, setStat, clearState, UserState, selectCurrentUser } from 'domain/createUserSlice';
+import { USER_COLORS } from 'domain/constants';
 
 import './CreateUser.css';
 
@@ -43,7 +43,7 @@ export const CreateUser: React.FC<CreateUserProps> = ({
 	};
 
 	return (
-		<Modal
+		<ModalComponent
 			title="User"
 			isOpen={isOpen}
 			onConfirm={handleConfirm}
@@ -103,6 +103,6 @@ export const CreateUser: React.FC<CreateUserProps> = ({
 					</div>
 				))}
 			</form>
-		</Modal>
+		</ModalComponent>
 	);
 };

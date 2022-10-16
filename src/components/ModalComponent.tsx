@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import './Modal.css';
+import './ModalComponent.css';
 
 interface ModalProps {
   title?: string;
@@ -10,7 +10,7 @@ interface ModalProps {
   onCancel: () => void;
 }
 
-export const Modal: React.FC<ModalProps> = ({
+export const ModalComponent: React.FC<ModalProps> = ({
   title,
   children,
   isOpen,

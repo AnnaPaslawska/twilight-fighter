@@ -1,0 +1,41 @@
+.user {
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	flex-basis: max-content;
+	margin-bottom: 10px;
+}
+
+.user:not(:last-of-type) {
+	margin-right: 10px;
+}
+
+.user-name {
+	font-weight: bold;
+	border-bottom: 1px solid #ccc;
+	margin: 0;
+	padding: 10px 0;
+}
+
+.user-color-red {
+	background-color: red;
+}
+
+.user-color-green {
+	background-color: green;
+}
+
+.user-color-blue {
+	background-color: blue;
+}
+
+.user-color-black {
+	background-color: black;
+}
+
+.user-color-yellow {
+	background-color: yellow;
+}
+
+.user-color-transparent {
+	background-color: transparent;
+}

@@ -1,5 +1,5 @@
-import { ShipType } from '../domain/interfaces';
-import { SHIP_TYPE } from '../domain/enums';
+import { ShipType } from 'domain/interfaces';
+import { SHIP_TYPE } from 'domain/enums';
 
 export const SHIP_TYPES: ShipType[] = [{
 	name: SHIP_TYPE.fighter,

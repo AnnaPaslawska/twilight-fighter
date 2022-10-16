@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import { CreateUser } from './CreateUser';
-import { UserState, setId, setName, setColor, setStat, selectCurrentUser } from '../domain/createUserSlice';
-import { useAppDispatch, useAppSelector } from '../domain/hooks';
-import { UserShipType, User, UserShip } from '../domain/interfaces';
+import { CreateUser } from 'pages/CreateUser';
+import { UserState, setId, setName, setColor, setStat, selectCurrentUser } from 'domain/createUserSlice';
+import { selectUsers, selectUserById, addUser, updateUser } from 'domain/usersSlice';
+import { useAppDispatch, useAppSelector } from 'domain/hooks';
+import { UserShipType, User, UserShip } from 'domain/interfaces';
+import { UserComponent } from 'components/UserComponent';
 
 import './StartPage.css';
 
 export const StartPage: React.FC = () => {
 	const dispatch = useAppDispatch();
 	const currentUser = useAppSelector(selectCurrentUser);
+	const users = useAppSelector(selectUsers);
 	const [isOpen, setOpen] = useState(false);
-	const [users, setUser] = useState<User[]>([]);
 
 	const openModal = () => {
 		setOpen(true);
@@ -37,7 +39,7 @@ export const StartPage: React.FC = () => {
 
 	const createUser = (userData: UserState) => {
 		const user = {
-			id: userData.userId || users.length,
+			id: userData.userId ?? users.length,
 			name: userData.name,
 			color: userData.color,
 			ships: createShips(userData.shipTypes)
@@ -62,18 +64,14 @@ export const StartPage: React.FC = () => {
 	};
 
 	const handleConfirm = (userData: UserState) => {
-		setUser(prevState => {
-			const editedUserIndex = prevState.findIndex(user => user.id === userData.userId);
-			const user = createUser(userData);
+		const user = createUser(userData);
+		const index = users.findIndex(existingUser: User => existingUser.id === user.id);
 
-			if (editedUserIndex === -1) {
-				return [...prevState, user];
-			} else {
-				const newState = [...prevState];
-				newState.splice(editedUserIndex, 1, user);
-				return newState;
-			}
-		});
+		if (index !== -1) {
+			dispatch(updateUser({user, index}));
+		} else {
+			dispatch(addUser(user));
+		}
 		setOpen(false);
 	};
 
@@ -96,30 +94,7 @@ export const StartPage: React.FC = () => {
 					<h3>Current users:</h3>
 					<div className="users">
 						{users.map((user: User, userIndex: number) => (
-							<div key={userIndex} className="user">
-								<div className={`user-name user-color-${user.color}`}>
-									<p>{user.name}</p>
-									<button onClick={() => editUser(user)}>Edit</button>
-								</div>
-								<table className="user-ships">
-									<thead>
-										<tr>
-											<th className="user-ships-header">Ship type</th>
-											<th className="user-ships-header">Health</th>
-											<th className="user-ships-header">Damage</th>
-										</tr>
-									</thead>
-									<tbody>
-									{user.ships.map((ship: UserShip, userShipIndex: number) => (
-										<tr key={userShipIndex}>
-											<td className="user-ships-cell">{ship.name}</td>
-											<td className="user-ships-cell">{ship.health}</td>
-											<td className="user-ships-cell">{ship.damage}</td>
-										</tr>
-									))}
-									</tbody>
-								</table>
-							</div>
+							<UserComponent key={userIndex} user={user} onEditUser={editUser} />
 						))}
 					</div>
 				</>

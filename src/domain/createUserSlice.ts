@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { SHIP_TYPES } from './constants';
+import { SHIP_TYPES } from 'domain/constants';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { RootState } from './store';
-import type { ShipType, UserShipType } from './interfaces';
+import type { RootState } from 'domain/store';
+import type { ShipType, UserShipType } from 'domain/interfaces';
 
 export interface UserState {
 	userId: number | undefined;
@@ -44,6 +44,7 @@ export const createUserSlice = createSlice({
 			}
 		},
 		clearState: (state) => {
+			state.userId = initialState.userId;
 			state.name = initialState.name;
 			state.color = initialState.color;
 			state.shipTypes = initialState.shipTypes;
